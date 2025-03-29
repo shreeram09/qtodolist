@@ -1,14 +1,17 @@
 package com.example.todolist.adapters.in.resource;
 
 import com.example.todolist.ToDoDto;
+import com.example.todolist.adapters.common.CommonMetadata;
 import com.example.todolist.TodoListApi;
 import com.example.todolist.adapters.in.resource.mapper.TodoMapper;
 import com.example.todolist.ports.out.TodoListPort;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 
 import java.util.List;
 
+@ApplicationScoped
 public class TodoListResource implements TodoListApi {
 
     @Inject
@@ -16,6 +19,9 @@ public class TodoListResource implements TodoListApi {
 
     @Inject
     private TodoMapper mapper;
+
+    @Inject
+    private CommonMetadata commonMetadata;
 
     @Override
     public void create(ToDoDto item) {
@@ -45,7 +51,9 @@ public class TodoListResource implements TodoListApi {
     }
 
     @Override
-    public List<ToDoDto> retrieve() {
+    public List<ToDoDto> retrieve(String simId, String branchId) {
+        System.out.println("simId = " + simId);
+        System.out.println("branchId = " + branchId);
         return mapper.toModelList(port.retrieve());
     }
 }

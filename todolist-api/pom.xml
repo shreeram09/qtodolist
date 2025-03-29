@@ -12,7 +12,12 @@
             <groupId>com.example</groupId>
             <artifactId>todolist-model</artifactId>
         </dependency>
-        <!-- Ensure JAX-RS dependency is present -->
+        <!-- necessary to expose JAX-RS endpoints -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest</artifactId>
+        </dependency>
+        <!-- necessary to achieve json serialisation/deserialization for request/response -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-jackson</artifactId>
