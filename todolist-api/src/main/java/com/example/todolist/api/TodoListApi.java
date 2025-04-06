@@ -3,7 +3,11 @@ package com.example.todolist.api;
 import java.util.List;
 
 import com.example.todolist.model.ToDoDto;
+import com.example.todolist.model.LogLevelRequest;
+
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Response;
+
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameters;
@@ -52,5 +56,15 @@ public interface TodoListApi {
             @APIResponse(responseCode = "200", description = "List of ToDo items retrieved successfully")
     })
     public List<ToDoDto> retrieve(@HeaderParam("sim-id") String simId, @HeaderParam("branch-id") String branchId);
+
+    //put endpoint to change log level for given category/categories and return list of category/categories with respective new log level
+    @PUT
+    @Path("/loglevel")
+    @Operation(summary = "Change log level for given category/categories")
+    @APIResponses(value = {
+            @APIResponse(responseCode = "200", description = "Log level changed successfully"),
+            @APIResponse(responseCode = "400", description = "Invalid input")
+    })
+    public Response changeLogLevel(@RequestBody LogLevelRequest request);
 
 }
