@@ -8,5 +8,6 @@ import java.util.List;
 @Mapper(componentModel = "cdi")
 public interface TodoMapper {
     ToDo toEntity(com.example.todolist.domain.ToDo domain);
+    com.example.todolist.domain.ToDo toDomain(ToDo entity);
     List<com.example.todolist.domain.ToDo> toDomainList(List<ToDo> entityList);
 }

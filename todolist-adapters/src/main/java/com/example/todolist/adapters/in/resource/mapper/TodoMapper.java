@@ -1,6 +1,6 @@
 package com.example.todolist.adapters.in.resource.mapper;
 
-import com.example.todolist.ToDoDto;
+import com.example.todolist.model.ToDoDto;
 import com.example.todolist.domain.ToDo;
 import org.mapstruct.Mapper;
 

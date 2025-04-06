@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolist.adapters;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.transaction.Transactional;

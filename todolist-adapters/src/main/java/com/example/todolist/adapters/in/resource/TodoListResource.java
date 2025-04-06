@@ -1,12 +1,13 @@
 package com.example.todolist.adapters.in.resource;
 
-import com.example.todolist.ToDoDto;
+import com.example.todolist.model.ToDoDto;
 import com.example.todolist.adapters.common.CommonMetadata;
-import com.example.todolist.TodoListApi;
+import com.example.todolist.api.TodoListApi;
 import com.example.todolist.adapters.in.resource.mapper.TodoMapper;
 import com.example.todolist.ports.out.TodoListPort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 
 import java.util.List;
@@ -23,12 +24,14 @@ public class TodoListResource implements TodoListApi {
     @Inject
     private CommonMetadata commonMetadata;
 
+    @Transactional
     @Override
     public void create(ToDoDto item) {
         var domain = mapper.toDomain(item);
         port.add(domain);
     }
 
+    @Transactional
     @Override
     public ToDoDto update(String code, ToDoDto item) {
         var existingTodo = port.retrieve().stream()
@@ -43,6 +46,7 @@ public class TodoListResource implements TodoListApi {
         return mapper.toModel(existingTodo);
     }
 
+    @Transactional
     @Override
     public void delete(String code) {
         if(code==null || code.isEmpty()) throw new BadRequestException();
@@ -50,6 +54,7 @@ public class TodoListResource implements TodoListApi {
         port.delete(found.getCode());
     }
 
+    @Transactional
     @Override
     public List<ToDoDto> retrieve(String simId, String branchId) {
         System.out.println("simId = " + simId);

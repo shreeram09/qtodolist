@@ -1,7 +1,8 @@
-package com.example.todolist;
+package com.example.todolist.api;
 
 import java.util.List;
 
+import com.example.todolist.model.ToDoDto;
 import jakarta.ws.rs.*;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
@@ -51,4 +52,5 @@ public interface TodoListApi {
             @APIResponse(responseCode = "200", description = "List of ToDo items retrieved successfully")
     })
     public List<ToDoDto> retrieve(@HeaderParam("sim-id") String simId, @HeaderParam("branch-id") String branchId);
+
 }

@@ -7,7 +7,6 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Parameters;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -18,13 +17,11 @@ public class TodoAdapter implements TodoListPort, PanacheRepository<ToDo> {
     private TodoMapper mapper;
 
     @Override
-    @Transactional
     public void add(com.example.todolist.domain.ToDo todo) {
         persistAndFlush(mapper.toEntity(todo));
     }
 
     @Override
-    @Transactional
     public void delete(String code) {
         var deleted = delete("from todo_list where code = :code", Parameters.with("code", code));
         System.out.println("Deleted: " + deleted);

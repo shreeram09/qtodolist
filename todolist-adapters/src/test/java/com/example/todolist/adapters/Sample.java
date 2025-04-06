@@ -1,4 +1,4 @@
-package com.example.todolist;
+package com.example.todolist.adapters;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
