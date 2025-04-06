@@ -1,4 +1,4 @@
-package com.example.todolist.config;
+package com.example.todolist.api.config;
 
 import jakarta.ws.rs.core.Application;
 import org.eclipse.microprofile.openapi.annotations.Components;
