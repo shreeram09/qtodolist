@@ -7,7 +7,8 @@ import lombok.Data;
 @Entity
 public class ToDo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "todo_seq")
+    @SequenceGenerator(name = "todo_seq", sequenceName = "ToDo_SEQ", allocationSize = 1,initialValue = 1)
     Long id;
 
     String name;
